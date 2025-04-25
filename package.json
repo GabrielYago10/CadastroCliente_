@@ -1,0 +1,27 @@
+{
+  "name": "cadcli",
+  "version": "1.0.0",
+  "description": "Desenvolvimento de um sistema desktop para cadastro de clientes.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielYago10/cadastro-clientes.git"
+  },
+  "author": "Professor José de Assis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GabrielYago10/cadastro-clientes#issues"
+  },
+  "homepage": "https://github.com/GabrielYago10/cadastro-clientes#readme",
+  "devDependencies": {
+    "electron": "^34.2.0"
+  },
+  "dependencies": {
+    "jspdf": "^3.0.1",
+    "mongoose": "^8.12.2"
+  }
+}
