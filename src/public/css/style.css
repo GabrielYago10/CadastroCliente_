@@ -4,7 +4,7 @@
 .button img {
     margin: 50px 15px 25px 15px;
     padding: 5px;
-    border: 1px solid #162add;
+    border: 1px solid #e8e8e8;
     cursor: pointer;
 }
 
@@ -21,8 +21,8 @@
 /* rodapé */
 footer {
     width: 100%;
-    height: 55px;
-    background-color: #e46d0b;
+    height: 55px;   
+    background-color: #0078d7;
     position: fixed;
     bottom: 0;
     display: flex;
@@ -33,7 +33,13 @@ footer {
 footer p {
     color: #ffffff;
     padding-top: 7px;
-    font-size: 1.2em;
+    font-size: 1.2em;    
+}
+
+
+/* Ocultar o id do cliente */
+#inputIdClient {
+    display: none;
 }
 
 /* Estilo para a mensagem de erro do CPF */

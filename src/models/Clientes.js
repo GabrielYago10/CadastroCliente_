@@ -48,4 +48,3 @@ const clienteSchema = new Schema({
 // exportar para o main o modelo de dados
 // OBS: Clientes será o nome da coleção
 module.exports = model('Clientes', clienteSchema)
-

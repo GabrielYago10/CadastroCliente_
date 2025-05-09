@@ -12,4 +12,3 @@ function obterData() {
 
 //executar a função ao iniciar o aplicativo(janela principal)
 document.getElementById('dataAtual').innerHTML = obterData()
-
