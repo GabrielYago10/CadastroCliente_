@@ -108,6 +108,7 @@ cpfClient.addEventListener('input', () => {
     }
 });
 
+
 // ============================================================
 // == CRUD Create/Update ======================================
 
@@ -185,6 +186,23 @@ api.setName((args) => {
     // restaurar tecla Enter
     restaurarEnter()
 })
+
+
+api.setCpf((args) => {
+    console.log("Teste do IPC 'set-cpf'")
+    let busca = document.getElementById('searchClient').value
+    foco.value = ""
+    cpfClient.focus()
+    cpfClient.value = busca.replace(/\D/g, "") // Limpa pontuação se vier com
+    restaurarEnter()
+})
+
+
+
+
+
+
+
 
 function searchName() {
     //console.log("teste do botão buscar")
