@@ -482,11 +482,49 @@ ipcMain.on('delete-client', async (event, id) => {
 
 // ============================================================
 // == Crud Update =============================================
+function validarCPF(cpf) {
+    cpf = cpf.replace(/[^\d]+/g, ''); // remove tudo que não for dígito
+ 
+    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+        return false;
+    }
+ 
+    let soma = 0;
+    let resto;
+ 
+    for (let i = 1; i <= 9; i++) {
+        soma += parseInt(cpf.substring(i-1, i)) * (11 - i);
+    }
+ 
+    resto = (soma * 10) % 11;
+ 
+    if ((resto === 10) || (resto === 11)) resto = 0;
+    if (resto !== parseInt(cpf.substring(9, 10))) return false;
+ 
+    soma = 0;
+    for (let i = 1; i <= 10; i++) {
+        soma += parseInt(cpf.substring(i-1, i)) * (12 - i);
+    }
+ 
+    resto = (soma * 10) % 11;
+ 
+    if ((resto === 10) || (resto === 11)) resto = 0;
+    if (resto !== parseInt(cpf.substring(10, 11))) return false;
+ 
+    return true;
+}
 
 ipcMain.on('update-client', async (event, client) => {
-    // Importante! Teste de recebimento dos dados do cliente
-    console.log(client)
-    // Alterar a estrutura de dados no banco de dados MongoDB
+    // Validação do CPF
+    if (!validarCPF(client.cpfCli)) {
+        dialog.showMessageBox({
+            type: 'error',
+            title: "CPF inválido",
+            message: "O CPF informado não é válido. Por favor, verifique os dados.",
+            buttons: ['OK']
+        });
+        return; // interrompe para não salvar dados inválidos
+    }
     try {
         // criar uma nova de estrutura de dados usando a classe modelo. Atenção! Os atributos precisam ser idênticos ao modelo de dados Clientes.js e os valores são definidos pelo conteúdo do objeto cliente
         const updateClient = await clientModel.findByIdAndUpdate(
@@ -504,7 +542,7 @@ ipcMain.on('update-client', async (event, client) => {
                 cidadeCliente: client.cityCli,
                 ufCliente: client.ufCli
             },
-            {
+             {
                 new: true
             }
         )        
@@ -534,7 +572,7 @@ ipcMain.on('update-client', async (event, client) => {
                 }
             })
         } else {
-            console.log(error)
+            console.error("Erro ao atualizar cliente:", error)
         }
     }
 })
